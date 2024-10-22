@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    volumes:
+      - ./bitrix:/var/www/
+
+  proxy:
+    image: nginx:latest
+    ports:
+      - "8000:80"
+    volumes:
+      - "./bitrix:/var/www/"
+      - "./nginx:/etc/nginx/conf.d"
