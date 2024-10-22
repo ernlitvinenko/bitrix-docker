@@ -5,6 +5,7 @@ services:
     build: .
     volumes:
       - ./bitrix:/var/www/
+      - ./php.ini:/usr/local/etc/php/php.ini
 
   proxy:
     image: nginx:latest
@@ -13,3 +14,17 @@ services:
     volumes:
       - "./bitrix:/var/www/"
       - "./nginx:/etc/nginx/conf.d"
+
+# База Данных, раскоментировать при необходимости. (Смотреть документацию п 3.2)
+
+#   mysql:
+#     image: mysql:8.0
+#     environment:
+#       MYSQL_ROOT_PASSWORD: root_password      # Пароль ROOT пользователя
+#       MYSQL_DATABASE: bitrix_db               # Имя базы данных
+#       MYSQL_USER: bitrix_user                 # Имя пользователя
+#       MYSQL_PASSWORD: bitrix_password         # Пароль 
+#     volumes:
+#       - mysql_data:/var/lib/mysql
+# volumes:
+#   mysql_data:
